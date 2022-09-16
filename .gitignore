@@ -1,3 +1,4 @@
+.api-ip.txt
 */.aws/*
 flask_session/*
 *__pycache__/*

@@ -16,6 +16,7 @@ SESSION_TYPE = 'filesystem'
 app.config.from_object(__name__)
 Session(app)
 
+
 Errors = {
     'name': 'Invalid Name',
     'email': 'Invalid Email',
@@ -29,7 +30,7 @@ def index():
         if session.get('valid_session'): 
             user_id = session.get('email')
             response = requests.get(
-                f'http://localhost:8000/{user_id}/notes')
+                f'http://54.94.149.194:8000/{user_id}/notes')
             
             response_json = json.loads(response.text)
             if response_json['status'] == 'OK':
@@ -68,7 +69,7 @@ def login_post():
 
     # ask to api if exists email
     response = requests.post(
-        'http://localhost:8000/authorize/login',
+        'http://54.94.149.194:8000/authorize/login',
         json={
             "email": email,
             "password": password})
@@ -96,7 +97,7 @@ def register_post():
     
     # Make comprobation of data to the api
     response = requests.post(
-        'http://localhost:8000/authorize/register', 
+        'http://54.94.149.194:8000/authorize/register', 
         json={
             "email": email, 
             "password": password, 
@@ -147,7 +148,7 @@ def new_note_post(): # Save Note
     user_id = session.get('email')
     
     response = requests.post(
-        f'http://localhost:8000/{user_id}/new', 
+        f'http://54.94.149.194:8000/{user_id}/new', 
         json={
             "title": title, 
             "content": content,
@@ -169,7 +170,7 @@ def update_note_post(): # Update Note
     note_id = request.form['note_id']
 
     response = requests.post(
-        f'http://localhost:8000/{user_id}/update', 
+        f'http://54.94.149.194:8000/{user_id}/update', 
         json={
             "note_id": note_id,
             "title": title, 
@@ -189,7 +190,7 @@ def return_note(note_id):
     valid = session.get('valid_session')
     # Asks to api if the user has this note
     response = requests.get(
-        f'http://localhost:8000/{user_id}/get/{note_id}')
+        f'http://54.94.149.194:8000/{user_id}/get/{note_id}')
 
     
     logs = json.loads(response.text)
@@ -207,7 +208,7 @@ def delete_note():
     user_id = session.get('email')
 
     response = requests.get(
-        f'http://localhost:8000/{user_id}/delete/{note_id}')
+        f'http://54.94.149.194:8000/{user_id}/delete/{note_id}')
 
     if json.loads(response.text)['status'] == 'OK':
         return redirect(url_for("index"))
