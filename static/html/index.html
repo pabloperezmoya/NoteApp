@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp</title>
+
+    <link rel="stylesheet" href="/static/styles/main.css">
+    <script src="/static/js/index.js"></script>
+
+    
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    
+    <div id="app">
+        <h1 class="p-appname">NoteApp</h1>
+        <div class="nav-app">
+            <input class="button-app" type="submit" value="New" onclick="window.location.href='/note'">
+            <input class="button-app" type="submit" value="Logout" onclick="window.location.href='/logout'">
+        </div>
+
+        <div class="notes-list">
+            {% if notes is defined %}
+                {% for note_ in notes %}
+                    <div class="note-container">
+                        <a href="note/{{note_['note_id']}}" class="note">
+                            <h2 class="note-title">{{note_['title']}}</h2>
+                            <p class="note-brief">{{note_['content']}}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+            <!-- <div class="note-container">
+                <a href="" class="note">
+                    <h2 class="note-title">Primera Nota</h2>
+                    <p class="note-brief">This is a short note</p>
+                </a>
+            </div>
+            <div class="note-container">
+                <a href="" class="note">
+                    <h2 class="note-title">Segunda Nota</h2>
+                    <p class="note-brief">This is a short note</p>
+                </a>
+            </div> -->
+
+        </div>
+
+    </div>
+
+</body>
+</html>

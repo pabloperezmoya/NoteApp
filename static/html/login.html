@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp</title>
+    <link rel="stylesheet" href="/static/styles/authorize.css">
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+    <script src="/static/js/login.js"></script>
+</head>
+<body>
+    
+    <div id="register">
+        <div class="button-alt">
+            <input class="button-input-alt" type="button" type="button" value="Register" onclick="window.location.href='/register'">
+        </div>
+        <div class="header-form">
+            <h1>Login into</h1>
+            <p class="p-appname">NoteApp</p>
+        </div>
+        <div class="error-msg">
+            {% if error is defined %}
+                {% for e in error.values() %}
+                    <p class="error-msg">{{e}}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+        
+        <form action="/login" method="POST" class="register-form">            
+            <div class="form-element">
+                <label for="email"><p>Email</p></label>
+                <input type="email" id="email" name="email">
+            </div>
+            
+            <div class="form-element">
+                <label for="password"><p>Password</p></label>
+                <input type="password" id="password" name="password">
+            </div>
+
+            <input class="button" type="submit" value="Login">
+
+        </form>
+    </div>
+
+</body>
+</html>

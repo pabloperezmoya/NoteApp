@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NoteApp</title>
+    <link rel="stylesheet" href="/static/styles/note.css">
+    <script src="/static/js/note.js"></script>
+    
+    
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet'>
+</head>
+<body>
+    
+    <div id="note">
+        <div class="msg">
+            {% if msg is defined %}
+                <p class="msg">{{msg['status']}}</p>
+            {% endif %}
+        </div>
+
+        <div class="button-alt">
+            <input class="button-input-alt" type="button" type="button" value="&laquo;" onclick="window.location.href='/index'">
+        </div>
+
+        {% if note_id is defined %}
+            <form action="/delete" method="POST">                
+                <div class="nav-app">
+                    <input type="hidden" name="note_id" id="note_id" value="{{note_id}}"> 
+                    <input class="button-app" type="submit" value="Delete">
+                </div>
+            </form>
+        {% endif %}
+
+        {% if update is defined %}
+            <form action="/note/edit" method="POST" class="note-form">
+                <input type="hidden" name="note_id" id="note_id" value="{{note_id}}"> 
+                <div class="note-title">
+                    <label for="title"><p>Title</p></label>
+                        <input type="text" id="title" name="title" value="{{title}}">
+                    </div>
+                <div class="note-content">
+                    <label for="content">Content</label>
+                    <textarea name="content" id="content" cols="107" rows="10">{{content}}</textarea>
+                </div>
+                
+                <input class="button" type="submit" value="Update">
+            </form>
+        {% else %}
+            <form action="/note" method="POST" class="note-form">
+            <div class="note-title">
+                <label for="title"><p>Title</p></label>
+                {% if title is not defined %}
+                    <input type="text" id="title" name="title">
+                {% else %}
+                    <input type="text" id="title" name="title" value="{{title}}">
+                {% endif %}
+            </div>
+            <div class="note-content">
+                <label for="content">Content</label>
+                {% if content is not defined %}
+                    <textarea name="content" id="content" cols="107" rows="10"></textarea>
+                {% else %} 
+                <textarea name="content" id="content" cols="107" rows="10">{{content}}</textarea>
+                {% endif %}
+            </div>
+            <input class="button" type="submit" value="Save">
+
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
