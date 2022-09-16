@@ -1,4 +1,5 @@
 
+from concurrent.futures import thread
 from datetime import datetime
 from uuid import uuid4
 import requests
@@ -215,4 +216,4 @@ def delete_note():
         return render_template('error.html')
 
 if __name__ == '__main__':
-    app.run(use_reloader=True, debug=True)
+    app.run(use_reloader=True, debug=False, threaded=True)
