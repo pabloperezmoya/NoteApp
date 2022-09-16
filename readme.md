@@ -1,5 +1,7 @@
 
 # NoteApp
+Try the webapp [here](http://54.94.149.194)
+
 ![image](https://s3.us-west-2.amazonaws.com/aleph-content/photos/435/daa1e829-a13a-4bbb-9ce3-50f20a5ee25a)
 
 Demonstration project to deepen my skills with FastAPI, Flask, DynamoDB and the web stack *(I'm not frontend dev)*
