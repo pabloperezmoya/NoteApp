@@ -18,4 +18,4 @@ COPY . /app
 # configure the container to run in an executed manner
 # ENTRYPOINT [ "python" ]
 
-CMD ["uvicorn", "api:app", "--reload"]
+CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
