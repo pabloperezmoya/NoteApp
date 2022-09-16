@@ -16,3 +16,4 @@ starlette==0.20.4
 typing_extensions==4.3.0
 urllib3==1.26.12
 uvicorn==0.18.3
+email-validator==1.2.1
